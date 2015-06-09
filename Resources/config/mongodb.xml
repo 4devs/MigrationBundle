@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="f_devs_migration.provider.mongodb.class">FDevs\Migrations\Provider\MongodbProvider</parameter>
+    </parameters>
+
+    <services>
+        <service id="f_devs_migration.doctrine.model_manager" factory-service="doctrine_mongodb"
+                 factory-method="getManager" class="Doctrine\ODM\MongoDB\DocumentManager" public="false">
+            <argument>%f_devs_migration.doctrine.manager_name%</argument>
+        </service>
+
+        <service id="f_devs_migration.provider.mongodb" class="%f_devs_migration.provider.mongodb.class%" public="false">
+            <argument type="service" id="f_devs_migration.doctrine.model_manager"/>
+            <tag name="f_devs_migration.provider"/>
+        </service>
+
+    </services>
+
+</container>

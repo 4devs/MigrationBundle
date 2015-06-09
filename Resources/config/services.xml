@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="f_devs_migration.provider.chain.class">FDevs\Migrations\Provider\ChainProvider</parameter>
+        <parameter key="f_devs_migration.provider.container.class">FDevs\Migrations\Provider\ContainerAwareProvider</parameter>
+        <parameter key="f_devs_migration.command.abstract.class">FDevs\Migrations\Console\Command\AbstractCommand</parameter>
+        <parameter key="f_devs_migration.command.info.class">FDevs\Migrations\Console\Command\InfoCommand</parameter>
+        <parameter key="f_devs_migration.command.migrate.class">FDevs\Migrations\Console\Command\MigrateCommand</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="f_devs_migration.provider.chain" class="%f_devs_migration.provider.chain.class%" public="false">
+            <argument type="collection"/>
+        </service>
+
+        <service id="f_devs_migration.provider.container" class="%f_devs_migration.provider.container.class%" public="false">
+            <argument type="service" id="service_container"/>
+            <tag name="f_devs_migration.provider"/>
+        </service>
+
+        <!--command-->
+        <service id="f_devs_migration.command.abstract" class="%f_devs_migration.command.abstract.class%" abstract="true">
+            <call method="setMigrationConfiguration">
+                <argument type="service" id="f_devs_migration.configuration"/>
+            </call>
+        </service>
+        <service id="f_devs_migration.command.info" class="%f_devs_migration.command.info.class%"
+                 parent="f_devs_migration.command.abstract" >
+            <tag name="console.command" />
+        </service>
+        <service id="f_devs_migration.command.migrate" class="%f_devs_migration.command.migrate.class%"
+                 parent="f_devs_migration.command.abstract">
+            <tag name="console.command" />
+        </service>
+
+    </services>
+
+</container>

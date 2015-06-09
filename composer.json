@@ -1,0 +1,35 @@
+{
+    "name": "fdevs/migration-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Bundle for working with migrations databases",
+    "homepage": "https://github.com/4devs/MigrationBundle",
+    "keywords": ["migrations", "database"],
+    "authors": [
+        {
+            "name": "4devs company",
+            "homepage": "http://4devs.org"
+        },
+        {
+            "name": "Samusev Andrey",
+            "email": "andrey@4devs.org",
+            "homepage": "http://andrey.4devs.io/"
+        },
+        {
+            "name": "4devs Community",
+            "homepage": "https://github.com/4devs/MigrationBundle/contributors"
+        }
+    ],
+    "require-dev": {
+    },
+    "require": {
+        "php": ">=5.4",
+        "fdevs/migrations": "~1.0"
+    },
+    "suggest": {
+        "doctrine/mongodb-odm-bundle": "migrate mongodb"
+    },
+    "autoload": {
+        "psr-4": {"FDevs\\MigrationBundle\\": ""}
+    }
+}
