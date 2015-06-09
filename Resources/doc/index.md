@@ -7,6 +7,9 @@ Installation and usage is a quick:
 
 1. Download MigrationBundle using composer
 2. Enable the Bundle
+3. Create file migration
+4. Migration command
+5. Use Symfony Container in migrations
 
 ### Step 1: Download MigrationBundle using composer
 
