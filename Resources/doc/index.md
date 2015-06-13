@@ -10,6 +10,7 @@ Installation and usage is a quick:
 3. Create file migration
 4. Migration command
 5. Use Symfony Container in migrations
+6. Use with [Capifony](http://capifony.org/)
 
 ### Step 1: Download MigrationBundle using composer
 
@@ -162,4 +163,24 @@ class Version20150601103847 extends AbstractMigration implements ContainerAwareI
 
     }
 }
+```
+
+### Step 6: Use with Capifony
+
+#### add command
+
+```ruby
+# app/config/deploy.rb
+namespace :migrations do
+    task :migrate do
+        desc "Migration to the latest available version"
+        run "cd #{latest_release} && #{php_bin} #{symfony_console} fdevs:migrations:migrate --env=#{symfony_env_prod}"
+    end
+end
+```
+
+#### use command
+
+```bash
+$ cap migrations:migrate
 ```
