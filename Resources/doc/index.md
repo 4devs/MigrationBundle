@@ -3,18 +3,18 @@ Getting Started With MigrationBundle
 
 ## Installation and usage
 
-Installation and usage is a quick:
+Installation and usage are easy:
 
 1. Download MigrationBundle using composer
-2. Enable the Bundle
-3. Create file migration
-4. Migration command
+2. Enable the bundle
+3. Create a migration file
+4. Migration commands
 5. Use Symfony Container in migrations
-6. Use with [Capifony](http://capifony.org/)
+6. Usage with [Capifony](http://capifony.org/)
 
 ### Step 1: Download MigrationBundle using composer
 
-Add MigrationBundle in your composer.json:
+Add MigrationBundle to your composer.json file:
 
 ```js
 {
@@ -24,13 +24,13 @@ Add MigrationBundle in your composer.json:
 }
 ```
 
-Now tell composer to download the bundle by running the command:
+Now tell Composer to download the bundle by running the next command:
 
 ``` bash
 $ php composer.phar update fdevs/migration-bundle
 ```
 
-Composer will install the bundle to your project's `vendor/fdevs` directory.
+Composer will install the bundle into your project's `vendor/fdevs` directory.
 
 
 ### Step 2: Enable the bundle
@@ -50,7 +50,7 @@ public function registerBundles()
 }
 ```
 
-add config
+Add config
 
 ``` yaml
 # app/config/config.yml
@@ -60,14 +60,17 @@ f_devs_migration:
 
 
 
-### Step 3: Create file migration
+### Step 3: Create a migration file
 
-#####allowed folders
+#####Allowed folders
 
 * `%kernel.root_dir%/Resources/Migrations` 
-* `YouBestBundle/Migrations` 
+* `YouBestBundle/Migrations`
+
+You can check naming convention in the Migrations library [documentation](https://github.com/4devs/Migrations/blob/master/Resources/doc/index.md#create-a-migration-class)
 
 ```php
+// src/AppBundle/Migrations/Version20150601103845.php
 namespace AppBundle\Migrations;
 
 use FDevs\Migrations\Migration\MongodbMigration;
@@ -91,9 +94,9 @@ class Version20150601103845 extends MongodbMigration
 }
 ```
 
-### Step 4: Migration command
+### Step 4: Migration commands
 
-####info about migrations
+####Info about migrations
 
 ```bash
 $ bin/console fdevs:migrations:info
@@ -103,18 +106,18 @@ allowed migrations to execute.
 20150601103846 class AppBundle\Migrations\Version20150601103846
 20150601103847 class AppBundle\Migrations\Version20150601103847
 ```
-#### run migrations latest version
+#### Migrate to the latest version
 
 ```bash
 $ bin/console fdevs:migrations:migrate
 ```
-#### run migrations current version
+#### Migrate to a particular version
 
 ```bash
 $ bin/console fdevs:migrations:migrate 20150601103846
 ```
 
-#### run migrations down
+#### Revert migrations down
 
 ```bash
 $ bin/console fdevs:migrations:migrate 20150601103845 down
@@ -165,9 +168,9 @@ class Version20150601103847 extends AbstractMigration implements ContainerAwareI
 }
 ```
 
-### Step 6: Use with Capifony
+### Step 6: Usage with Capifony
 
-#### add command
+#### Add the migrations:migrate command
 
 ```ruby
 # app/config/deploy.rb
@@ -179,7 +182,7 @@ namespace :migrations do
 end
 ```
 
-#### use command
+#### Use the command
 
 ```bash
 $ cap migrations:migrate
