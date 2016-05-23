@@ -64,10 +64,10 @@ f_devs_migration:
 
 #####Allowed folders
 
-* `%kernel.root_dir%/Resources/Migrations` 
+* `%kernel.root_dir%/Resources/Migrations`
 * `YouBestBundle/Migrations`
 
-You can check naming convention in the Migrations library [documentation](https://github.com/4devs/Migrations/blob/master/Resources/doc/index.md#create-a-migration-class)
+You can check naming convention in the Migrations library [documentation](https://github.com/4devs/migrations/blob/master/Resources/doc/index.md#create-a-migration-class)
 
 ```php
 // src/AppBundle/Migrations/Version20150601103845.php
