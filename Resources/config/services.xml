@@ -10,6 +10,7 @@
         <parameter key="f_devs_migration.command.abstract.class">FDevs\Migrations\Console\Command\AbstractCommand</parameter>
         <parameter key="f_devs_migration.command.info.class">FDevs\Migrations\Console\Command\InfoCommand</parameter>
         <parameter key="f_devs_migration.command.migrate.class">FDevs\Migrations\Console\Command\MigrateCommand</parameter>
+        <parameter key="f_devs_migration.command.generate.class">FDevs\Migrations\Console\Command\GenerateCommand</parameter>
     </parameters>
 
     <services>
@@ -34,6 +35,10 @@
             <tag name="console.command" />
         </service>
         <service id="f_devs_migration.command.migrate" class="%f_devs_migration.command.migrate.class%"
+                 parent="f_devs_migration.command.abstract">
+            <tag name="console.command" />
+        </service>
+        <service id="f_devs_migration.command.generate" class="%f_devs_migration.command.generate.class%"
                  parent="f_devs_migration.command.abstract">
             <tag name="console.command" />
         </service>
